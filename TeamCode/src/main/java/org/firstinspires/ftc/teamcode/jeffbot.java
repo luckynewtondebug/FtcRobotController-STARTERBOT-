@@ -16,6 +16,7 @@ public class jeffbot extends OpMode {
     final double FULL_SPEED = 1.0;
     final double LAUNCHER_TARGET_VELOCITY = 1125;
     final double LAUNCHER_MIN_VELOCITY = 1075;
+    double LAUNCHER_MANUAL_VELOCITY = 0;
     private CRServo spinnyServo1 = null;
     private CRServo spinnyServo2 = null;
     private DcMotorEx topMotor = null;
@@ -90,6 +91,12 @@ public class jeffbot extends OpMode {
         topMotor.setVelocity(6000);
     } else if (gamepad1.a) {
         launchState = LaunchState.LAUNCH;
+    }else if (gamepad1.dpad_up) {
+        LAUNCHER_MANUAL_VELOCITY = LAUNCHER_MANUAL_VELOCITY + 10;
+        topMotor.setVelocity(LAUNCHER_MANUAL_VELOCITY);
+    } else if (gamepad1.dpad_down) {
+        LAUNCHER_MANUAL_VELOCITY = LAUNCHER_MANUAL_VELOCITY - 10;
+        topMotor.setVelocity(LAUNCHER_MANUAL_VELOCITY);
     }
     launch(gamepad1.rightBumperWasPressed());
     telemetry.addData("State", launchState);
