@@ -86,6 +86,8 @@ public class jeffbot extends OpMode {
         topMotor.setVelocity(LAUNCHER_TARGET_VELOCITY);
     } else if (gamepad1.b) {
         topMotor.setVelocity(STOP_SPEED);
+    } else if (gamepad1.x) {
+        topMotor.setVelocity(6000);
     }
     launch(gamepad1.rightBumperWasPressed());
     telemetry.addData("State", launchState);
